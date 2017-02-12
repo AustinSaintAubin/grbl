@@ -126,7 +126,7 @@
 // After homing, Grbl will set by default the entire machine space into negative space, as is typical
 // for professional CNC machines, regardless of where the limit switches are located. Uncomment this
 // define to force Grbl to always set the machine origin at the homed location despite switch orientation.
-// #define HOMING_FORCE_SET_ORIGIN // Uncomment to enable.
+#define HOMING_FORCE_SET_ORIGIN // Uncomment to enable.
 
 // Number of blocks Grbl executes upon startup. These blocks are stored in EEPROM, where the size
 // and addresses are defined in settings.h. With the current settings, up to 2 startup blocks may
@@ -601,20 +601,20 @@
 
 // ---------------------------------------------------------------------------------------
 // COMPILE-TIME ERROR CHECKING OF DEFINE VALUES:
-#ifndef HOMING_CYCLE_0
-#error "Required HOMING_CYCLE_0 not defined."
-#endif
-#if defined(USE_SPINDLE_DIR_AS_ENABLE_PIN) && !defined(VARIABLE_SPINDLE)
-#error "USE_SPINDLE_DIR_AS_ENABLE_PIN may only be used with VARIABLE_SPINDLE enabled"
-#endif
-#if defined(USE_SPINDLE_DIR_AS_ENABLE_PIN) && !defined(CPU_MAP_ATMEGA328P)
-#error "USE_SPINDLE_DIR_AS_ENABLE_PIN may only be used with a 328p processor"
-#endif
-#if defined(PARKING_ENABLE)
-#if defined(HOMING_FORCE_SET_ORIGIN)
-#error "HOMING_FORCE_SET_ORIGIN is not supported with PARKING_ENABLE at this time."
-#endif
-#endif
+//#ifndef HOMING_CYCLE_0
+//#error "Required HOMING_CYCLE_0 not defined."
+//#endif
+//#if defined(USE_SPINDLE_DIR_AS_ENABLE_PIN) && !defined(VARIABLE_SPINDLE)
+//#error "USE_SPINDLE_DIR_AS_ENABLE_PIN may only be used with VARIABLE_SPINDLE enabled"
+//#endif
+//#if defined(USE_SPINDLE_DIR_AS_ENABLE_PIN) && !defined(CPU_MAP_ATMEGA328P)
+//#error "USE_SPINDLE_DIR_AS_ENABLE_PIN may only be used with a 328p processor"
+//#endif
+//#if defined(PARKING_ENABLE)
+//#if defined(HOMING_FORCE_SET_ORIGIN)
+//#error "HOMING_FORCE_SET_ORIGIN is not supported with PARKING_ENABLE at this time."
+//#endif
+//#endif
 
 // ---------------------------------------------------------------------------------------
 
