@@ -1,0 +1,52 @@
+# GRBL Source
+https://github.com/gnea/grbl
+
+Compiled with settings: [Changes to (config.h)]
+#define HOMING_FORCE_SET_ORIGIN  // Enabled
+#define ENABLE_M7  // Enabled
+#define ENABLE_SAFETY_DOOR_INPUT_PIN  // Enabled
+#define SAFETY_DOOR_SPINDLE_DELAY 1.0  // 1 Sec
+//#define PARKING_ENABLE  // Disabled
+
+###################################
+# [X-Carve Settings]
+Grbl 1.1f ['$' for help]
+[MSG:'$H'|'$X' to unlock]
+> $
+[HLP:$$ $# $G $I $N $x=val $Nx=line $J=line $SLP $C $X $H ~ ! ? ctrl-x]
+ok
+> $$
+$0=10 (Step pulse time, microseconds)
+$1=255 (Step idle delay, milliseconds)
+$2=0 (Step pulse invert, mask)
+$3=4 (Step direction invert, mask)
+$4=0 (Invert step enable pin, boolean)
+$5=0 (Invert limit pins, boolean)
+$6=0 (Invert probe pin, boolean)
+$10=15 (Status report options, mask)
+$11=0.020 (Junction deviation, millimeters)
+$12=0.002 (Arc tolerance, millimeters)
+$13=0 (Report in inches, boolean)
+$20=1 (Soft limits enable, boolean)
+$21=1 (Hard limits enable, boolean)
+$22=1 (Homing cycle enable, boolean)
+$23=3 (Homing direction invert, mask)
+$24=25.000 (Homing locate feed rate, mm/min)
+$25=800.000 (Homing search seek rate, mm/min)
+$26=250 (Homing switch debounce delay, milliseconds)
+$27=1.000 (Homing switch pull-off distance, millimeters)
+$30=255 (Maximum spindle speed, RPM)
+$31=0 (Minimum spindle speed, RPM)
+$32=0 (Laser-mode enable, boolean)
+$100=40.000 (X-axis travel resolution, step/mm)
+$101=40.000 (Y-axis travel resolution, step/mm)
+$102=188.976 (Z-axis travel resolution, step/mm)
+$110=8000.000 (X-axis maximum rate, mm/min)
+$111=8000.000 (Y-axis maximum rate, mm/min)
+$112=500.000 (Z-axis maximum rate, mm/min)
+$120=250.000 (X-axis acceleration, mm/sec^2)
+$121=250.000 (Y-axis acceleration, mm/sec^2)
+$122=25.000 (Z-axis acceleration, mm/sec^2)
+$130=750.000 (X-axis maximum travel, millimeters)
+$131=750.000 (Y-axis maximum travel, millimeters)
+$132=100.000 (Z-axis maximum travel, millimeters)
