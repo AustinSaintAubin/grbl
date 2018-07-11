@@ -1,12 +1,23 @@
-# GRBL Source
+# GRBL Source (The standard GRBL firmware is identical to the Inventables GRBL, just some minor config changes.)
 https://github.com/gnea/grbl
 
-Compiled with settings: [Changes to (config.h)]
+Compiled with settings: 
+
+[Changes to (config.h)]
+#define DEFAULTS_X_CARVE_1000MM 
 #define HOMING_FORCE_SET_ORIGIN  // Enabled
 #define ENABLE_M7  // Enabled
 #define ENABLE_SAFETY_DOOR_INPUT_PIN  // Enabled
-#define SAFETY_DOOR_SPINDLE_DELAY 1.0  // 1 Sec
+#define SAFETY_DOOR_SPINDLE_DELAY 1.5  // 1 Sec
+////#define SPINDLE_PWM_MIN_VALUE 38 // Laser Low Value Offset. Uncomment to enable. Must be greater than zero. Integer (1-255).
 //#define PARKING_ENABLE  // Disabled
+
+[Changes to (serial.c)]
+case CMD_FEED_HOLD:     system_set_exec_state_flag(EXEC_FEED_HOLD); system_set_exec_state_flag(EXEC_SAFETY_DOOR); break; // case CMD_FEED_HOLD:     system_set_exec_state_flag(EXEC_FEED_HOLD); break; // Set as true
+
+[Changes to (cpu_map.h)]
+#define SPINDLE_TCCRB_INIT_MASK   (1<<CS21)               // 1/8 prescaler -> 7.8kHz (Used in v0.9)
+//#define SPINDLE_TCCRB_INIT_MASK (1<<CS22)               // 1/64 prescaler -> 0.98kHz (J-tech laser)
 
 ###################################
 # [X-Carve Settings]
@@ -47,6 +58,31 @@ $112=500.000 (Z-axis maximum rate, mm/min)
 $120=250.000 (X-axis acceleration, mm/sec^2)
 $121=250.000 (Y-axis acceleration, mm/sec^2)
 $122=25.000 (Z-axis acceleration, mm/sec^2)
-$130=750.000 (X-axis maximum travel, millimeters)
-$131=750.000 (Y-axis maximum travel, millimeters)
-$132=100.000 (Z-axis maximum travel, millimeters)
+$130=770.000 (X-axis maximum travel, millimeters)
+$131=780.000 (Y-axis maximum travel, millimeters)
+$132=94.000 (Z-axis maximum travel, millimeters)
+ok
+> $#
+[G54:100.000,577.000,-7.847]
+[G55:0.000,0.000,0.000]
+[G56:0.000,0.000,0.000]
+[G57:0.000,0.000,0.000]
+[G58:0.000,0.000,0.000]
+[G59:0.000,0.000,0.000]
+[G28:0.000,0.000,0.000]
+[G30:0.000,0.000,0.000]
+[G92:0.000,0.000,0.000]
+[TLO:0.000]
+[PRB:0.000,0.000,0.000:0]
+ok
+> $I
+[VER:1.1d.20161112:]
+[OPT:VMZ]
+ok
+> $G
+[GC:G0 G54 G17 G21 G90 G94 M5 M9 T0 F0 S0]
+ok
+> $N
+$N0=
+$N1=
+ok
