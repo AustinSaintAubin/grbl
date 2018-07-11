@@ -1,0 +1,88 @@
+# GRBL Source (The standard GRBL firmware is identical to the Inventables GRBL, just some minor config changes.)
+https://github.com/gnea/grbl
+
+Compiled with settings: 
+
+[Changes to (config.h)]
+#define DEFAULTS_X_CARVE_1000MM 
+#define HOMING_FORCE_SET_ORIGIN  // Enabled
+#define ENABLE_M7  // Enabled
+#define ENABLE_SAFETY_DOOR_INPUT_PIN  // Enabled
+#define SAFETY_DOOR_SPINDLE_DELAY 1.5  // 1 Sec
+////#define SPINDLE_PWM_MIN_VALUE 38 // Laser Low Value Offset. Uncomment to enable. Must be greater than zero. Integer (1-255).
+//#define PARKING_ENABLE  // Disabled
+
+[Changes to (serial.c)]
+case CMD_FEED_HOLD:     system_set_exec_state_flag(EXEC_FEED_HOLD); system_set_exec_state_flag(EXEC_SAFETY_DOOR); break; // case CMD_FEED_HOLD:     system_set_exec_state_flag(EXEC_FEED_HOLD); break; // Set as true
+
+[Changes to (cpu_map.h)]
+#define SPINDLE_TCCRB_INIT_MASK   (1<<CS21)               // 1/8 prescaler -> 7.8kHz (Used in v0.9)
+//#define SPINDLE_TCCRB_INIT_MASK (1<<CS22)               // 1/64 prescaler -> 0.98kHz (J-tech laser)
+
+###################################
+# [X-Carve Settings]
+Grbl 1.1f ['$' for help]
+[MSG:'$H'|'$X' to unlock]
+> $
+[HLP:$$ $# $G $I $N $x=val $Nx=line $J=line $SLP $C $X $H ~ ! ? ctrl-x]
+ok
+> $$
+$0=10 (Step pulse time, microseconds)
+$1=255 (Step idle delay, milliseconds)
+$2=0 (Step pulse invert, mask)
+$3=4 (Step direction invert, mask)
+$4=0 (Invert step enable pin, boolean)
+$5=0 (Invert limit pins, boolean)
+$6=0 (Invert probe pin, boolean)
+$10=15 (Status report options, mask)
+$11=0.020 (Junction deviation, millimeters)
+$12=0.002 (Arc tolerance, millimeters)
+$13=0 (Report in inches, boolean)
+$20=1 (Soft limits enable, boolean)
+$21=1 (Hard limits enable, boolean)
+$22=1 (Homing cycle enable, boolean)
+$23=3 (Homing direction invert, mask)
+$24=25.000 (Homing locate feed rate, mm/min)
+$25=800.000 (Homing search seek rate, mm/min)
+$26=250 (Homing switch debounce delay, milliseconds)
+$27=1.000 (Homing switch pull-off distance, millimeters)
+$30=255 (Maximum spindle speed, RPM)
+$31=0 (Minimum spindle speed, RPM)
+$32=0 (Laser-mode enable, boolean)
+$100=40.000 (X-axis travel resolution, step/mm)
+$101=40.000 (Y-axis travel resolution, step/mm)
+$102=188.976 (Z-axis travel resolution, step/mm)
+$110=8000.000 (X-axis maximum rate, mm/min)
+$111=8000.000 (Y-axis maximum rate, mm/min)
+$112=500.000 (Z-axis maximum rate, mm/min)
+$120=250.000 (X-axis acceleration, mm/sec^2)
+$121=250.000 (Y-axis acceleration, mm/sec^2)
+$122=25.000 (Z-axis acceleration, mm/sec^2)
+$130=770.000 (X-axis maximum travel, millimeters)
+$131=780.000 (Y-axis maximum travel, millimeters)
+$132=94.000 (Z-axis maximum travel, millimeters)
+ok
+> $#
+[G54:100.000,577.000,-7.847]
+[G55:0.000,0.000,0.000]
+[G56:0.000,0.000,0.000]
+[G57:0.000,0.000,0.000]
+[G58:0.000,0.000,0.000]
+[G59:0.000,0.000,0.000]
+[G28:0.000,0.000,0.000]
+[G30:0.000,0.000,0.000]
+[G92:0.000,0.000,0.000]
+[TLO:0.000]
+[PRB:0.000,0.000,0.000:0]
+ok
+> $I
+[VER:1.1d.20161112:]
+[OPT:VMZ]
+ok
+> $G
+[GC:G0 G54 G17 G21 G90 G94 M5 M9 T0 F0 S0]
+ok
+> $N
+$N0=
+$N1=
+ok
